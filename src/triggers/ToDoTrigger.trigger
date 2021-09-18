@@ -7,11 +7,11 @@ trigger ToDoTrigger on ToDo__c (
         after delete,
         after undelete) {
     if (Trigger.isBefore && Trigger.isInsert) {
-        //Trigger.new
+        ToDoTriggerHandler.handleBeforeInsert(Trigger.new);
     }
 
     if (Trigger.isBefore && Trigger.isUpdate) {
-        //Trigger.new, Trigger.newMap, Trigger.old, Trigger.oldMap
+        ToDoTriggerHandler.handleBeforeUpdate(Trigger.new, Trigger.newMap, Trigger.old, Trigger.oldMap);
     }
 
     if (Trigger.isBefore && Trigger.isDelete) {
